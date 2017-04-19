@@ -16,7 +16,14 @@ class PostsController < ApplicationController
       render :new
     end
   end
-
+  def edit
+    @group = Group.find(params[:group_id])
+    @post = Post.find(:post_params)
+  end
+  def destroy
+    @post.destroy
+    redirect_to root_path, alert:"Post has been deleted!"
+  end
   private
   def post_params
     params.require(:post).permit(:content)
